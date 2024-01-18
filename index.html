@@ -15,12 +15,11 @@
     <title>Frontend Mentor | Rock, Paper, Scissors</title>
 
     <link rel="stylesheet" href="style.css" />
-
-    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <script src="script.js" defer></script>
   </head>
   <body>
     <div class="wrapper">
-      <header>
+      <header class="game-header">
         <img src="images/logo.svg" alt="Rock, paper, scissors" />
         <div class="score-table">
           <p>Score</p>
@@ -32,7 +31,32 @@
         <button class="game-btn" data-choice="scissors"></button>
         <button class="game-btn" data-choice="rock"></button>
       </section>
-      <footer><button class="rules-btn">Rules</button></footer>
+      <section class="game-results hidden">
+        <div class="result__container">
+          <h2 class="game-results__title">You picked</h2>
+          <div class="choice-container user__choice-container">
+            <!-- <button class="game-btn" data-choice="scissors"></button> -->
+          </div>
+        </div>
+        <div class="result__container">
+          <h2 class="game-results__title">The house picked</h2>
+          <div class="choice-container ai__choice-container">
+            <!-- <button class="game-btn" data-choice="paper"></button> -->
+          </div>
+        </div>
+      </section>
+      <footer>
+        <button class="rules-btn" tabindex="1">Rules</button>
+        <div class="modal" data-visible="false">
+          <div class="modal__container">
+            <header class="modal__header">
+              <h2>Rules</h2>
+              <button class="close-btn"></button>
+            </header>
+            <img src="images/image-rules.svg" alt="Rules of the game" />
+          </div>
+        </div>
+      </footer>
     </div>
     <!-- Score
   Rules

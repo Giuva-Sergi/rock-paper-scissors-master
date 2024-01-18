@@ -70,11 +70,14 @@ h6 {
 
 body {
   font-family: "Barlow Semi Condensed", sans-serif;
+  text-transform: uppercase;
+  color: #fff;
   /* min-height: 100vh;
   display: grid;
   grid-template-rows: minmax(8rem, 20vh) 1fr minmax(5rem, 8vh);
   place-items: center; */
   background: radial-gradient(
+    ellipse at top,
     var(--background-grad-1),
     var(--background-grad-2)
   );
@@ -89,14 +92,14 @@ body {
   /* height: 100vh; */
   display: grid;
   /* grid-template-rows: minmax(10rem, 20vh) 1fr minmax(4rem, 5vh); */
-  grid-template-rows: minmax(3ch, 10rem) 1fr minmax(5rem, 10vh);
+  grid-template-rows: minmax(3ch, 9rem) 1fr minmax(5rem, 10vh);
   place-items: center;
-  gap: 3rem;
+  gap: 5rem;
 }
 
 /* HEADER SECTION */
 
-header {
+.game-header {
   display: flex;
   justify-content: space-between;
   width: 55%;
@@ -134,40 +137,77 @@ header {
   grid-template-columns: 1fr 1fr;
   place-content: center;
   justify-items: center;
-  width: 40%;
+  /* row-gap: 2rem; */
+  row-gap: 4rem;
+  width: 35%;
   background: url(images/bg-triangle.svg);
   background-repeat: no-repeat;
-  background-size: 40%;
-  background-position: 50% 75%;
-  /* z-index: -1; */
+  background-size: 48%;
+  /* background-position: 51% 90%; */
+  background-position: 51% 68%;
+  z-index: 0;
 }
 
 .game-btn {
-  width: 9rem;
+  position: relative;
+  width: 7rem;
   aspect-ratio: 1;
   border-style: none;
   border-radius: 50%;
+  box-shadow: inset 0 0.4rem rgba(0, 0, 0, 0.2);
+}
+
+.game-btn::after {
+  content: "";
+  position: absolute;
+  inset: -18% 0 0 -17%;
+  width: 135%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  z-index: -1;
+  box-shadow: inset 0rem -0.4rem rgba(0, 0, 0, 0.3);
 }
 
 button[data-choice="paper"] {
   background: url(images/icon-paper.svg), #fff;
   background-repeat: no-repeat;
   background-position: center;
-  border: 1rem solid var(--paper-grad-1);
+}
+
+button[data-choice="paper"]::after {
+  background: linear-gradient(
+    to bottom,
+    var(--paper-grad-1),
+    var(--paper-grad-2)
+  );
 }
 
 button[data-choice="scissors"] {
   background: url(images/icon-scissors.svg), #fff;
   background-repeat: no-repeat;
   background-position: center;
-  border: 1rem solid var(--scissors-grad-1);
+}
+
+button[data-choice="scissors"]::after {
+  background: linear-gradient(
+    to bottom,
+    var(--scissors-grad-1),
+    var(--scissors-grad-2)
+  );
 }
 
 button[data-choice="rock"] {
   background: url(images/icon-rock.svg), #fff;
   background-repeat: no-repeat;
   background-position: center;
-  border: 1rem solid var(--rock-grad-1);
+}
+
+button[data-choice="rock"]::after {
+  background: linear-gradient(
+    to bottom,
+    var(--rock-grad-1),
+    var(--rock-grad-2)
+  );
 }
 
 button[data-choice="rock"] {
@@ -179,7 +219,6 @@ footer {
   width: 100%;
   display: flex;
   justify-content: flex-end;
-  /* border: 3px solid firebrick; */
 }
 
 .rules-btn {
@@ -192,4 +231,98 @@ footer {
   border-radius: 7px;
   border: 2px solid var(--neutral-clr-400);
   padding: 0.4rem 1.8rem;
+}
+
+/* MODAL */
+
+.modal {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  background-color: rgba(0 0 0 / 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 700ms ease-in-out;
+}
+
+.modal[data-visible="true"] {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  background-color: rgba(0 0 0 / 0.5);
+  opacity: 1;
+  /* z-index: 10; */
+  pointer-events: all;
+}
+
+.modal__container {
+  background-color: #fff;
+  padding: 1.5rem 2.5rem;
+  display: grid;
+  row-gap: 2rem;
+  border-radius: 7px;
+}
+
+.modal__header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal__header h2 {
+  text-transform: uppercase;
+  color: var(--neutral-clr-700);
+}
+
+.close-btn {
+  width: 1.5rem;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  background: url(images/icon-close.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* GAME RESULTS SECTION */
+
+.game-results {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  place-items: center;
+  row-gap: 3rem;
+  min-width: 50%;
+}
+
+.result__container {
+  display: grid;
+  place-items: center;
+  row-gap: 5rem;
+}
+
+.choice-container {
+  width: 10rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: rgba(23, 34, 64, 255);
+  z-index: -1;
+  display: grid;
+  place-items: center;
+}
+
+.choice-container .game-btn {
+  width: 100%;
+  background-size: 50%;
+  pointer-events: none;
+}
+
+.game-results__title {
+  font-size: 1.2rem;
+}
+
+/* UTILITIES */
+
+.hidden {
+  display: none;
 }
