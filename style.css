@@ -312,17 +312,86 @@ footer {
 }
 
 .choice-container .game-btn {
-  width: 100%;
-  background-size: 50%;
+  --width: 110%;
+
+  width: var(--width);
+  background-size: calc(var(--width) / 2.5);
+
   pointer-events: none;
 }
 
 .game-results__title {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+  letter-spacing: 3px;
+}
+
+/* SHOW WINNER SECTION */
+
+.game-results.show-winner {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10rem;
+}
+
+.game-results.show-winner {
+  .result__container:first-of-type {
+    grid-column: 1;
+  }
+
+  .result__container:last-of-type {
+    grid-column: 3;
+  }
+}
+
+.play-again-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: end;
+  gap: 0.4rem;
+}
+
+.result__header {
+  font-size: 3rem;
+  letter-spacing: 2px;
+}
+
+.play-again__btn {
+  color: var(--neutral-clr-700);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  padding: 0.5rem 2.5rem;
+  border-radius: 7px;
+  border-style: none;
+  background-color: none;
+  transition: color 300ms ease-in-out;
+}
+
+@media (hover) {
+  .play-again__btn:hover {
+    color: var(--rock-grad-2);
+  }
 }
 
 /* UTILITIES */
 
 .hidden {
   display: none;
+}
+
+.winner {
+  --spread: 4rem;
+  box-shadow: 0 0 0.5rem var(--spread) rgba(43, 56, 88, 255),
+    0 0 0.5rem calc(var(--spread) * 2) rgba(36, 47, 77, 255),
+    0 0 0.5rem calc(var(--spread) * 2.5) rgba(34, 49, 80, 255);
+  animation: rescaling 1500ms 400ms infinite alternate;
+}
+
+@keyframes rescaling {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.45);
+  }
 }

@@ -20,6 +20,12 @@ const gameBtns = document.querySelectorAll(".game-btn");
 const gameSection = document.querySelector(".game-section");
 const gameResultsSection = document.querySelector(".game-results");
 const choiceContainers = document.querySelectorAll(".choice-container");
+const userContainer = document.querySelector(".user__choice-container");
+const cpuContainer = document.querySelector(".ai__choice-container");
+const resultHeader = document.querySelector(".result__header");
+const playAgainContainer = document.querySelector(".play-again-container");
+const scoreEl = document.querySelector(".score");
+let score = 0;
 
 const outcomes = [
   { choice: "paper", beats: "rock", beatenBy: "scissors" },
@@ -45,14 +51,54 @@ const updateUI = function (choices) {
   gameResultsSection.classList.toggle("hidden");
 };
 
+const showWinner = function ([user, cpu]) {
+  gameResultsSection.classList.add("show-winner");
+  playAgainContainer.classList.toggle("hidden");
+  let gameOutcome = outcomes.find((outcome) => outcome.choice === user);
+  let winner;
+  if (cpu === gameOutcome.beats) {
+    resultHeader.innerHTML = "you win";
+    userContainer.classList.add("winner");
+    winner = "user";
+  } else if (cpu === gameOutcome.beatenBy) {
+    resultHeader.innerHTML = "you lose";
+    cpuContainer.classList.add("winner");
+    winner = "cpu";
+  } else {
+    resultHeader.innerHTML = "draw";
+  }
+  setTimeout(() => updateScore(winner), 1000);
+};
+
+const updateScore = function (winner) {
+  if (winner === "user") {
+    score++;
+  } else if (winner === "cpu") {
+    score--;
+  }
+  if (score <= 0) return;
+  scoreEl.innerHTML = score;
+};
+
 gameBtns.forEach((button) => {
   button.addEventListener("click", () => {
     let userChoice = button.getAttribute("data-choice");
     let AIChoice = AIChoose();
     updateUI([userChoice, AIChoice]);
-
-    // let gameOutcome = outcomes.find((outcome) => outcome.choice === userChoice);
-    // console.log(gameOutcome.beats);
-    // console.log(gameOutcome.beatenBy);
+    setTimeout(() => showWinner([userChoice, AIChoice]), 2000);
   });
+});
+
+// PLAY AGAIN COMPONENT
+const playAgainBtn = document.querySelector(".play-again__btn");
+
+playAgainBtn.addEventListener("click", () => {
+  choiceContainers.forEach((container) => {
+    container.classList.remove("winner");
+    container.innerHTML = "";
+  });
+  gameResultsSection.classList.toggle("hidden");
+  gameResultsSection.classList.toggle("show-winner");
+  gameSection.classList.toggle("hidden");
+  playAgainContainer.classList.toggle("hidden");
 });
