@@ -89,6 +89,7 @@ gameBtns.forEach((button) => {
   });
 });
 
+// ********************************************** //
 // PLAY AGAIN COMPONENT
 const playAgainBtn = document.querySelector(".play-again__btn");
 
