@@ -31,9 +31,17 @@
         </div>
       </header>
       <section class="game-section">
-        <button class="game-btn" data-choice="paper"></button>
-        <button class="game-btn" data-choice="scissors"></button>
-        <button class="game-btn" data-choice="rock"></button>
+        <button
+          class="game-btn"
+          data-choice="paper"
+          aria-label="paper"
+        ></button>
+        <button
+          class="game-btn"
+          data-choice="scissors"
+          aria-label="scissors"
+        ></button>
+        <button class="game-btn" data-choice="rock" aria-label="rock"></button>
       </section>
       <section class="game-results hidden">
         <div class="result__container">
@@ -50,12 +58,14 @@
         </div>
       </section>
       <footer>
-        <button class="rules-btn" tabindex="1">Rules</button>
-        <div class="modal" data-visible="false">
+        <button class="rules-btn" tabindex="0" aria-controls="modal-window">
+          Rules
+        </button>
+        <div id="modal-window" class="modal" data-visible="false">
           <div class="modal__container">
             <header class="modal__header">
               <h2>Rules</h2>
-              <button class="close-btn"></button>
+              <button class="close-btn" aria-label="close"></button>
             </header>
             <img
               src="images/image-rules.svg"

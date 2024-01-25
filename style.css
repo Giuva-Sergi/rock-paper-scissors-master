@@ -56,6 +56,8 @@ select {
 
 button {
   cursor: pointer;
+  outline: none;
+  box-shadow: none;
 }
 
 p,
@@ -161,8 +163,7 @@ body {
   background: url(images/bg-triangle.svg);
   background-repeat: no-repeat;
   background-size: 48%;
-
-  background-position: 51% max(68%, 10vh);
+  background-position: 51% max(60%, 10vh);
   z-index: 0;
 }
 
@@ -493,4 +494,17 @@ footer {
     --spread: 1.2rem;
     animation: unset;
   }
+}
+
+.rules-btn:focus-within {
+  box-shadow: 0 0 0.8rem 0.5rem var(--neutral-clr-400);
+}
+.game-btn[data-choice="scissors"]:focus {
+  box-shadow: 0 0 0.8rem 1.8rem hsla(39, 89%, 49%, 0.5);
+}
+.game-btn[data-choice="paper"]:focus {
+  box-shadow: 0 0 0.8rem 1.8rem hsla(230, 89%, 62%, 0.5);
+}
+.game-btn[data-choice="rock"]:focus {
+  box-shadow: 0 0 0.8rem 1.8rem hsla(349, 71%, 52%, 0.5);
 }

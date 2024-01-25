@@ -93,7 +93,7 @@ gameBtns.forEach((button) => {
 // PLAY AGAIN COMPONENT
 const playAgainBtn = document.querySelector(".play-again__btn");
 
-playAgainBtn.addEventListener("click", () => {
+const playAgain = function () {
   choiceContainers.forEach((container) => {
     container.classList.remove("winner");
     container.innerHTML = "";
@@ -102,4 +102,8 @@ playAgainBtn.addEventListener("click", () => {
   gameResultsSection.classList.toggle("show-winner");
   gameSection.classList.toggle("hidden");
   playAgainContainer.classList.toggle("hidden");
+};
+
+playAgainBtn.addEventListener("click", () => {
+  playAgain();
 });
