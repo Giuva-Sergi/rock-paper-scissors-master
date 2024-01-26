@@ -76,7 +76,7 @@ const updateScore = function (winner) {
   } else if (winner === "cpu") {
     score--;
   }
-  if (score <= 0) return;
+  score = Math.max(score, 0);
   scoreEl.innerHTML = score;
 };
 
